@@ -1,0 +1,81 @@
+<!-- Bita Golshani --> 
+<!-- 22 July 2018 --> 
+
+<!DOCTYPE html> 
+<html> 
+  <!--<script src="cityscript.js"></script>-->
+
+  <head> 
+    	<meta charset="utf-8"> 
+    	<title> City to City </title> 
+    	
+    	
+  		<!-- favicon used for adding image to titlebar --> 
+    	<link rel="icon" type="image/png" href="icon.png">
+  </head> 
+  
+  
+  <body style="background-color:rgb(50,50,50)">	  
+
+  	<header> 
+  		<h1 align="center">
+      	CITY TO CITY 
+    	</h1>
+ 	   <p align=center> <i> A helpful guide to communicating with far-away loved ones </i> </p>
+  	</header>  
+ 	 <br>
+    
+		<form id="firstloc" class="where" style="text-align:center;" action="http://www.mapquestapi.com/geocoding/v1/address?key=ayZvRTHfODxxhoPqR3x6gvcARa2sGd4l" method="POST">
+			<input type="text" name="location" placeholder="Your location"> 
+		</form> 
+  	<form id="secondloc" class="where" style="text-align:center;">
+  		<input type="text" name="loc2" placeholder="Their location">
+			<div style="text-align:center; display:block"> 
+   			<button> GO </button>
+   		</div>
+  	</form>
+    
+    
+ 	 	<style>  
+  	  header { 
+   	  	color:white;
+    	font-family:georgia;
+  	  }
+  	  h1 { 
+    		font-size:50px; 
+    		margin-bottom:-.3em;
+   	 }
+  		.where { 
+    		text-align:center;
+  			color:white; 
+  			font-size:40px;
+  			font-family:georgia;
+  		}
+  		.center {
+    		display: block;
+    		margin-left: auto;
+    		margin-right: auto;
+			}
+    
+    	input[type=text] { 
+   	 	 padding: 14px 24px;
+    		box-sizing: border-box;
+    		border: 3px solid #ccc;
+    		-webkit-transition: 0.5s;
+    		transition: 0.5s;
+				outline:none;
+    	}
+    
+    	input[type=text]:focus {
+    		border: 3px solid #500;
+    	}
+  	</style> 
+    
+  	<br> 
+  	<img src="pixelmap.png" style = "width:750px; height:370px;" class="center">
+	</body> 
+  
+  
+<!-- add tooltip for titlebar --> 
+<!-- add border? --> 
+</html>
