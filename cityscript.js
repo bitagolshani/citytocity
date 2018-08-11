@@ -24,7 +24,7 @@ var getLoc = function(url, callback) {
 };
 
 //try-catch 
-getLoc('/geocoding/v5/{mapbox.places}/{loc1}.json',
+getLoc('http://www.mapquestapi.com/geocoding/v1/{loc1}?key=ayZvRTHfODxxhoPqR3x6gvcARa2sGd4l',
 function(err, data) {
   if (err !== null) {
     alert('Something went wrong: ' + err);
