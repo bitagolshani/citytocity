@@ -3,14 +3,12 @@
 
 <!DOCTYPE html>
 <html>
-<!--  <script src="cityscript.js"></script> -->
 <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
 <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css" />
 
 <head>
 	<meta charset="utf-8">
 	<title> City to City </title>
-
 
 	<!-- favicon used for adding image to titlebar -->
 	<link rel="icon" type="image/png" href="icon.png">
@@ -86,44 +84,63 @@
 
 
 <script>
-
+	/* called upon button click */
 	function getLatLong() {
 		var loc1 = document.getElementById("firstloc").elements[0].value;
 		var loc2 = document.getElementById("secondloc").elements[0].value;
 
+		/*FIRST CITY lat&lng*/
 		var requestURL = 'https://www.mapquestapi.com/geocoding/v1/address?key=ayZvRTHfODxxhoPqR3x6gvcARa2sGd4l&inFormat=kvp&outFormat=json&location=' + loc1 + '&thumbMaps=false';
 		var request = new XMLHttpRequest();
 		request.open("POST", requestURL);
-		request.responseType = 'json';
 		request.send();
-		var firstLatLong = request.response.document;
-		console.log(firstLatLong);
 
+		var firstLat;
+		var firstLong;
+		request.onload = function () {   /** ASYNCHRONOUS VS SYNCHRONOUS BEHAVIOR- javascript loads this AFTER "slower" operations are completed **/
+			firstLat = request.responseText.indexOf('"lat"') + 6;
+			firstLat = request.responseText.substring(firstLat, firstLat + 9);
+			firstLong = request.responseText.indexOf('"lng"') + 6; //lastIndexOf gives same result? 
+			firstLong = request.responseText.substring(firstLong, firstLong + 9);
+			getTimeOne(); //SOLUTION: find timezone only AFTER responseText info is retrieved
+		}
+
+		/*SECOND CITY lat&lng*/
 		var requestURL2 = 'https://www.mapquestapi.com/geocoding/v1/address?key=ayZvRTHfODxxhoPqR3x6gvcARa2sGd4l&inFormat=kvp&outFormat=json&location=' + loc2 + '&thumbMaps=false';
 		var request2 = new XMLHttpRequest();
 		request2.open("POST", requestURL2);
-		request2.responseType = 'json';
 		request2.send();
-		var secondLatLong = request2.response;
 
-	//	console.log(firstLatLong);
-	//	console.log(secondLatLong);
+		var secondLat;
+		var secondLong;
+		request2.onload = function () {
+			secondLat = request2.responseText.indexOf('"lat"') + 6;
+			secondLat = request2.responseText.substring(secondLat, secondLat + 9);
+			secondLong = request2.responseText.indexOf('"lng"') + 6; //lastIndexOf gives same result? 
+			secondLong = request2.responseText.substring(secondLong, secondLong + 9);
+			getTimeTwo();
+		}
 
+		/* GETS TIME ZONES for both cities */
+		function getTimeOne() {
+			var requestTimeURL = 'http://api.timezonedb.com/v2/get-time-zone?key=36L914FF4JA8&format=json&by=position&lat=' + firstLat + '&lng=' + firstLong;
+			var requestTime = new XMLHttpRequest();
+			requestTime.open("POST", requestTimeURL);
+			requestTime.send();
+		}
+		function getTimeTwo() {
+			var requestTimeURL2 = 'http://api.timezonedb.com/v2/get-time-zone?key=36L914FF4JA8&format=json&by=position&lat=' + secondLat + '&lng=' + secondLong;
+			var requestTime2 = new XMLHttpRequest();
+			requestTime2.open("POST", requestTimeURL2);
+			requestTime2.send();
+		}
 	}
-	    //var result = request.response;
-		//console.log(result);
 </script>
 
 
 
 
-
-
-
-
-
-
-
+<!-- MISCELLANEOUS IDEAS -->
 <!-- add tooltip for titlebar -->
 <!-- add border? -->
 <!-- add sentence telling what times for them are good to communicate -->
