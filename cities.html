@@ -29,15 +29,17 @@
 
 	<!-- 2 input forms for location -->
 	<form id="firstloc" class="where" style="text-align:center;">
-		<input type="text" name="location" placeholder="Your location">
+		<input type="text" name="location" placeholder="Your [City, Country]">
 	</form>
 	<form id="secondloc" class="where" style="text-align:center;">
-		<input type="text" name="loc2" placeholder="Their location">
+		<input type="text" name="loc2" placeholder="Their [City, Country]">
 		<div style="text-align:center; display:block">
 			<button type="button" onclick="getLatLong()"> GO </button>
 		</div>
 	</form>
 
+	<br>
+	<p id="results"></p>
 
 	<style>
 		header {
@@ -63,6 +65,12 @@
 			margin-right: auto;
 		}
 
+		#results {
+			color: white;
+			text-align: center;
+			font-family: georgia;
+		}
+
 		input[type=text] {
 			padding: 14px 24px;
 			box-sizing: border-box;
@@ -77,13 +85,13 @@
 		}
 	</style>
 
-	<br>
 	<img src="pixelmap.png" style="width:750px; height:370px;" class="center">
 </body>
 
 
 
 <script>
+	var done = false; 
 	/* called upon button click */
 	function getLatLong() {
 		var loc1 = document.getElementById("firstloc").elements[0].value;
@@ -121,18 +129,47 @@
 			getTimeTwo();
 		}
 
-		/* GETS TIME ZONES for both cities */
+		/* GETS CURRENT TIME for both cities */
 		function getTimeOne() {
 			var requestTimeURL = 'http://api.timezonedb.com/v2/get-time-zone?key=36L914FF4JA8&format=json&by=position&lat=' + firstLat + '&lng=' + firstLong;
 			var requestTime = new XMLHttpRequest();
 			requestTime.open("POST", requestTimeURL);
 			requestTime.send();
+
+			requestTime.onload = function () {
+				window.currTime = requestTime.responseText.indexOf("formatted") + 23; //hr:min  /* GLOBAL VARIABLE*/ 
+				currTime = requestTime.responseText.substring(currTime, currTime + 5);
+				done = true; 
+				//console.log(currTime);
+			}
 		}
+
 		function getTimeTwo() {
 			var requestTimeURL2 = 'http://api.timezonedb.com/v2/get-time-zone?key=36L914FF4JA8&format=json&by=position&lat=' + secondLat + '&lng=' + secondLong;
 			var requestTime2 = new XMLHttpRequest();
 			requestTime2.open("POST", requestTimeURL2);
 			requestTime2.send();
+
+			requestTime2.onload = function () {
+				window.currTime2 = requestTime2.responseText.indexOf("formatted") + 23; //hr:min /* GLOBAL VARIABLE */ 
+				currTime2 = requestTime2.responseText.substring(currTime2, currTime2 + 5);
+				//console.log(currTime2);
+				//console.log(currTime);    
+
+
+				/* DISPLAY TIMES AND RESULTS */
+				while(done != true)
+					void(0);
+				currTimeHour = window.currTime.substring(0, 2);
+				currTime2Hour = window.currTime2.substring(0, 2);
+				if (currTime2Hour < 8 && currTime2Hour > 0)
+					document.getElementById("results").innerHTML = "Now isn't a great time to call. Their current time, " + window.currTime2 + ", isn't within 8am to midnight.";
+				else if (currTimeHour < 8 && currTimeHour > 0)
+					document.getElementById("results").innerHTML = "Now isn't a great time to call. Your current time, " + window.currTime + ", isn't within 8am to midnight.";
+				else { 
+					document.getElementById("results").innerHTML = "Now is a good time to call."; 
+				}
+			}
 		}
 	}
 </script>
