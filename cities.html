@@ -126,25 +126,17 @@
 			secondLat = request2.responseText.substring(secondLat, secondLat + 9);
 			secondLong = request2.responseText.indexOf('"lng"') + 6; //lastIndexOf gives same result? 
 			secondLong = request2.responseText.substring(secondLong, secondLong + 9);
-			getTimeTwo();
+		//	getTimeTwo();
 		}
 
-		/* GETS CURRENT TIME for both cities */
-		function getTimeOne() {
-			var requestTimeURL = 'http://api.timezonedb.com/v2/get-time-zone?key=36L914FF4JA8&format=json&by=position&lat=' + firstLat + '&lng=' + firstLong;
-			var requestTime = new XMLHttpRequest();
-			requestTime.open("POST", requestTimeURL);
-			requestTime.send();
 
-			requestTime.onload = function () {
-				window.currTime = requestTime.responseText.indexOf("formatted") + 23; //hr:min  /* GLOBAL VARIABLE*/ 
-				currTime = requestTime.responseText.substring(currTime, currTime + 5);
-				done = true; 
-				//console.log(currTime);
-			}
-		}
 
-		function getTimeTwo() {
+
+
+	//	getTimeOne(getTimeTwo); /********* CALLBACK ********/
+
+var callback = function() { 
+		//function getTimeTwo() {
 			var requestTimeURL2 = 'http://api.timezonedb.com/v2/get-time-zone?key=36L914FF4JA8&format=json&by=position&lat=' + secondLat + '&lng=' + secondLong;
 			var requestTime2 = new XMLHttpRequest();
 			requestTime2.open("POST", requestTimeURL2);
@@ -158,20 +150,25 @@
 
 
 				/* DISPLAY TIMES AND RESULTS */
-				while(done != true)
-					void(0);
+			//	while(done != true) {
+			//		void(0);
+			//		console.log("here");
+			//	}
 				currTimeHour = window.currTime.substring(0, 2);
 				currTime2Hour = window.currTime2.substring(0, 2);
-				if (currTime2Hour < 8 && currTime2Hour > 0)
+				if (currTime2Hour < 8 && currTime2Hour >= 0)
 					document.getElementById("results").innerHTML = "Now isn't a great time to call. Their current time, " + window.currTime2 + ", isn't within 8am to midnight.";
 				else if (currTimeHour < 8 && currTimeHour > 0)
 					document.getElementById("results").innerHTML = "Now isn't a great time to call. Your current time, " + window.currTime + ", isn't within 8am to midnight.";
 				else { 
-					document.getElementById("results").innerHTML = "Now is a good time to call."; 
+					document.getElementById("results").innerHTML = "Now is a good time to call. It's currently " + window.currTime2 + " in their location."; 
 				}
 			}
 		}
 	}
+
+	/* issue 08/16: "Origin 'null' is therefore not allowed access" 
+	   Not allowed to run AJAX (asynchornous JS and XML) on a local file for security reasons */ 
 </script>
 
 
