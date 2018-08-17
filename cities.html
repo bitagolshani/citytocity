@@ -21,11 +21,10 @@
 		<h1 align="center">
 			CITY TO CITY
 		</h1>
-		<p align=center>
+		<h3 align=center>
 			<i> A helpful guide to communicating with far-away loved ones </i>
-		</p>
+		</h3>
 	</header>
-	<br>
 
 	<!-- 2 input forms for location -->
 	<form id="firstloc" class="where" style="text-align:center;">
@@ -38,10 +37,15 @@
 		</div>
 	</form>
 
-	<br>
 	<p id="results"></p>
 
 	<style>
+		input:-webkit-autofill {
+			/* removes chrome yellow auto-fill bg color on input forms */
+			/* BUG: shadow comes a second too late, so pale yellow shows up temporarily */
+			-webkit-box-shadow: 0 0 0 30px white inset;
+		}
+
 		header {
 			color: white;
 			font-family: georgia;
@@ -50,6 +54,10 @@
 		h1 {
 			font-size: 50px;
 			margin-bottom: -.3em;
+		}
+
+		h3 {
+			font-weight: normal;
 		}
 
 		.where {
@@ -85,13 +93,13 @@
 		}
 	</style>
 
-	<img src="pixelmap.png" style="width:750px; height:370px;" class="center">
+	<img src="pixelmap.png" style="width:840px; height:420px;" class="center">
 </body>
 
 
 
 <script>
-	var done = false; 
+	//var done = false;
 	/* called upon button click */
 	function getLatLong() {
 		var loc1 = document.getElementById("firstloc").elements[0].value;
@@ -126,17 +134,27 @@
 			secondLat = request2.responseText.substring(secondLat, secondLat + 9);
 			secondLong = request2.responseText.indexOf('"lng"') + 6; //lastIndexOf gives same result? 
 			secondLong = request2.responseText.substring(secondLong, secondLong + 9);
-		//	getTimeTwo();
+			//getTimeTwo();
 		}
 
+		/* GETS CURRENT TIME for both cities */
+		function getTimeOne() {
+			var requestTimeURL = 'http://api.timezonedb.com/v2/get-time-zone?key=36L914FF4JA8&format=json&by=position&lat=' + firstLat + '&lng=' + firstLong;
+			var requestTime = new XMLHttpRequest();
+			requestTime.open("POST", requestTimeURL);
+			requestTime.send();
 
+			requestTime.onload = function () {
+				window.currTime = requestTime.responseText.indexOf("formatted") + 23; //hr:min  /* GLOBAL VARIABLE*/ 
+				currTime = requestTime.responseText.substring(currTime, currTime + 5);
+				//done = true;
+				getTimeTwo(); /* FIX FOR ISSUE 08/17: getTimeTwo() only starts AFTER getTimeOne() is completed; doesn't start time calculation 
+								 without first getting first city's info*/
+				//console.log(currTime);
+			}
+		}
 
-
-
-	//	getTimeOne(getTimeTwo); /********* CALLBACK ********/
-
-var callback = function() { 
-		//function getTimeTwo() {
+		function getTimeTwo() {
 			var requestTimeURL2 = 'http://api.timezonedb.com/v2/get-time-zone?key=36L914FF4JA8&format=json&by=position&lat=' + secondLat + '&lng=' + secondLong;
 			var requestTime2 = new XMLHttpRequest();
 			requestTime2.open("POST", requestTimeURL2);
@@ -150,34 +168,37 @@ var callback = function() {
 
 
 				/* DISPLAY TIMES AND RESULTS */
-			//	while(done != true) {
-			//		void(0);
-			//		console.log("here");
-			//	}
+				//	while(done != true) {
+				//		void(0);
+				//		console.log("here");
+				//	}
 				currTimeHour = window.currTime.substring(0, 2);
 				currTime2Hour = window.currTime2.substring(0, 2);
-				if (currTime2Hour < 8 && currTime2Hour >= 0)
-					document.getElementById("results").innerHTML = "Now isn't a great time to call. Their current time, " + window.currTime2 + ", isn't within 8am to midnight.";
-				else if (currTimeHour < 8 && currTimeHour > 0)
-					document.getElementById("results").innerHTML = "Now isn't a great time to call. Your current time, " + window.currTime + ", isn't within 8am to midnight.";
-				else { 
-					document.getElementById("results").innerHTML = "Now is a good time to call. It's currently " + window.currTime2 + " in their location."; 
+				if (currTime2Hour < 8 && currTime2Hour >= 0) {
+					var tryAgain = 8 - parseInt(currTime2Hour);
+					document.getElementById("results").innerHTML = "<span style='color:red;'> Now isn't a great time to call. </span> <br> Their current time, " + window.currTime2 + ", isn't within 08:00 to 24:00. Try again in " + tryAgain + " hours.";
 				}
+				else if (currTimeHour < 8 && currTimeHour > 0) {
+					var tryAgain = 8 - parseInt(currTimeHour);
+					document.getElementById("results").innerHTML = "<span style='color:red;'> Now isn't a great time to call. </span> <br> Your current time, " + window.currTime + ", isn't within 08:00 to 24:00. Try again in " + tryAgain + " hours.";
+				}
+				else
+					document.getElementById("results").innerHTML = "<span style='color:green;'> Now is a good time to call. </span> <br> It's currently " + window.currTime2 + " in their location.";
 			}
 		}
 	}
 
-	/* issue 08/16: "Origin 'null' is therefore not allowed access" 
-	   Not allowed to run AJAX (asynchornous JS and XML) on a local file for security reasons */ 
 </script>
 
 
 
 
 <!-- MISCELLANEOUS IDEAS -->
-<!-- add tooltip for titlebar -->
 <!-- add border? -->
-<!-- add sentence telling what times for them are good to communicate -->
-<!-- military time/regular time conversion? do military first though-->
+<!-- add gradient bar showing when it's closer to a better time to communicate-->
+<!-- add table showing your/their time (2 rows) and filling in boxes green/red accordingly-->
+<!-- military time/regular time conversion -->
+<!-- make map interactive? probably need a new API w that functionality-->
+<!-- allow user to set own time boundaries (e.g. 9am-11pm) -->
 
 </html>
