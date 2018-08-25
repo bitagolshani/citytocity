@@ -139,7 +139,7 @@
 
 		/* GETS CURRENT TIME for both cities */
 		function getTimeOne() {
-			var requestTimeURL = 'http://api.timezonedb.com/v2/get-time-zone?key=36L914FF4JA8&format=json&by=position&lat=' + firstLat + '&lng=' + firstLong;
+			var requestTimeURL = 'https://api.timezonedb.com/v2/get-time-zone?key=36L914FF4JA8&format=json&by=position&lat=' + firstLat + '&lng=' + firstLong;
 			var requestTime = new XMLHttpRequest();
 			requestTime.open("POST", requestTimeURL);
 			requestTime.send();
@@ -155,7 +155,7 @@
 		}
 
 		function getTimeTwo() {
-			var requestTimeURL2 = 'http://api.timezonedb.com/v2/get-time-zone?key=36L914FF4JA8&format=json&by=position&lat=' + secondLat + '&lng=' + secondLong;
+			var requestTimeURL2 = 'https://api.timezonedb.com/v2/get-time-zone?key=36L914FF4JA8&format=json&by=position&lat=' + secondLat + '&lng=' + secondLong;
 			var requestTime2 = new XMLHttpRequest();
 			requestTime2.open("POST", requestTimeURL2);
 			requestTime2.send();
