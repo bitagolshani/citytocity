@@ -24,6 +24,10 @@ form {
 	margin-top:"5%";
 }
 
+#submitbutton {
+	cursor: pointer;
+}
+
 /* removes chrome yellow auto-fill bg color on input forms */
 /* BUG: shadow comes a second too late, so pale yellow shows up temporarily */
 input:-webkit-autofill {

@@ -25,17 +25,13 @@
 	<!-- input form for 2 locations -->
 	<!-- onKeyDown functions w enter press-->
 	<form style="text-align:center;">
-		<input type="text" name="firstloc" placeholder="Your [City,Country]">
+		<input type="text" name="firstloc" placeholder="Your [City,Country]"> &nbsp; &nbsp;
 		<input type="text" name="secondloc" placeholder="Their [City, Country]" onKeyDown="if(event.keyCode==13) getLatLong();">
-		<img src="submitform.png" onclick="getLatLong()" style="display:inline-block; margin-top:5px">
-
-		<!--	<div id="button">
-			<button type="button" onclick="getLatLong()"> GO </button>
-		</div> -->
+		<img id="submitbutton" src="submitform.png" onclick="getLatLong()">
 	</form>
 
-	<p id="results"></p>
-	<img src="pixelmap.png" id="pixelmap" style="width:840px; height:420px;">
+	<p id="results"> <br/> <br/> </p> 
+	<img src="pixelmap.png" id="pixelmap" style="width:840px; height:420px; text-align:center">
 	<!-- external javascript file-->
 	<script src="cities.js"></script>
 </body>
