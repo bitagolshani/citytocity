@@ -1,10 +1,10 @@
 /* Bita Golshani */
-/* external Javascript file */ 
+/* external Javascript file */
 
 /* called upon button click */
 function getLatLong() {
-    var loc1 = document.getElementById("firstloc").elements[0].value;
-    var loc2 = document.getElementById("secondloc").elements[0].value;
+    var loc1 = document.getElementsByName("firstloc").value;
+    var loc2 = document.getElementsByName("secondloc").value;
 
     /*FIRST CITY lat&lng*/
     var requestURL = 'https://www.mapquestapi.com/geocoding/v1/address?key=ayZvRTHfODxxhoPqR3x6gvcARa2sGd4l&inFormat=kvp&outFormat=json&location=' + loc1 + '&thumbMaps=false';

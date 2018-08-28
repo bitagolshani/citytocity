@@ -1,8 +1,26 @@
 /* Bita Golshani */ 
 /* CSS external style sheet */ 
 
+header {
+	color: white;
+	font-family: georgia;
+	text-align: center;
+}
+h1 {
+	font-size: 50px;
+	margin-bottom: -.3em;
+}
+h3 {
+    font-weight: normal;
+    font-style: italic;
+}
+
 body {
 	background-color: rgb(50, 50, 50);
+}
+
+form { 
+    text-align: center; 
 }
 
 /* removes chrome yellow auto-fill bg color on input forms */
@@ -11,38 +29,10 @@ input:-webkit-autofill {
 	-webkit-box-shadow: 0 0 0 30px white inset;
 }
 
-header {
-	color: white;
-	font-family: georgia;
-	text-align: center;
-}
-
-h1 {
-	font-size: 50px;
-	margin-bottom: -.3em;
-}
-
-h3 {
-	font-weight: normal;
-}
-
-.locations {
-	text-align: center;
-	color: white;
-	font-size: 40px;
-	font-family: georgia;
-}
-
-#pixelmap {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-#results {
-	color: white;
-	text-align: center;
-	font-family: georgia;
+#button { 
+    padding-top: 10px;
+    text-align:center; 
+    display:block;
 }
 
 input[type=text] {
@@ -56,4 +46,16 @@ input[type=text] {
 
 input[type=text]:focus {
 	border: 3px solid #500;
+}
+
+#results {
+	color: white;
+	text-align: center;
+	font-family: georgia;
+}
+
+#pixelmap {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }

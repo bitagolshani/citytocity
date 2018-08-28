@@ -10,7 +10,7 @@
 
 	<!-- favicon used for adding image to titlebar -->
 	<!-- mapquest linked methods to use (no XML necessary)-->
-	<!-- external css style sheet-->
+	<!-- external css stylesheet-->
 	<link rel="icon" type="image/png" href="favicon.png">
 	<link rel="stylesheet" type="text/css" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css" />
 	<link rel="stylesheet" type="text/css" href="cities.css">
@@ -20,25 +20,23 @@
 <body>
 	<header>
 		<h1> CITY TO CITY </h1>
-		<h3>
-			<i> A helpful guide to communicating with far-away loved ones </i>
-		</h3>
+		<h3> A helpful guide to communicating with far-away loved ones </h3>
 	</header>
 
-	<!-- 2 input forms for location -->
-	<form id="firstloc" class="locations" style="text-align:center;">
-		<input type="text" name="location" placeholder="Your [City, Country]">
-	</form>
-	<form id="secondloc" class="locations" style="text-align:center;">
-		<input type="text" name="loc2" placeholder="Their [City, Country]">
-		<div style="text-align:center; display:block">
+	<!-- input form for 2 locations -->
+	<form style="text-align:center;">
+		<input type="text" name="firstloc" placeholder="Your [City,Country]">
+		<input type="text" name="secondloc" placeholder="Their [City, Country]">
+
+		<div id="button">
 			<button type="button" onclick="getLatLong()"> GO </button>
 		</div>
 	</form>
-	<p id="results"></p>
 
+	<p id="results"></p>
 	<img src="pixelmap.png" id="pixelmap" style="width:840px; height:420px;">
 	<script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+	<!-- external javascript file-->
 	<script src="cities.js"></script>
 </body>
 
@@ -51,4 +49,5 @@
 <!-- TODO: military time/regular time conversion -->
 <!-- TODO: make map interactive? probably need a new API w that functionality-->
 <!-- TODO: allow user to set own time boundaries (e.g. 9am-11pm) -->
+
 </html>
