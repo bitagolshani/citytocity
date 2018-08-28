@@ -12,7 +12,6 @@
 	<!-- mapquest linked methods to use (no XML necessary)-->
 	<!-- external css stylesheet-->
 	<link rel="icon" type="image/png" href="favicon.png">
-	<link rel="stylesheet" type="text/css" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css" />
 	<link rel="stylesheet" type="text/css" href="cities.css">
 </head>
 
@@ -24,18 +23,19 @@
 	</header>
 
 	<!-- input form for 2 locations -->
+	<!-- onKeyDown functions w enter press-->
 	<form style="text-align:center;">
 		<input type="text" name="firstloc" placeholder="Your [City,Country]">
-		<input type="text" name="secondloc" placeholder="Their [City, Country]">
+		<input type="text" name="secondloc" placeholder="Their [City, Country]" onKeyDown="if(event.keyCode==13) getLatLong();">
+		<img src="submitform.png" onclick="getLatLong()" style="display:inline-block; margin-top:5px">
 
-		<div id="button">
+		<!--	<div id="button">
 			<button type="button" onclick="getLatLong()"> GO </button>
-		</div>
+		</div> -->
 	</form>
 
 	<p id="results"></p>
 	<img src="pixelmap.png" id="pixelmap" style="width:840px; height:420px;">
-	<script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
 	<!-- external javascript file-->
 	<script src="cities.js"></script>
 </body>

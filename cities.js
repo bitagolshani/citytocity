@@ -7,6 +7,7 @@ function getLatLong() {
     var loc2 = document.getElementsByName("secondloc").value;
 
     /*FIRST CITY lat&lng*/
+    //(NOT using mapquest functions, sending manual request)
     var requestURL = 'https://www.mapquestapi.com/geocoding/v1/address?key=ayZvRTHfODxxhoPqR3x6gvcARa2sGd4l&inFormat=kvp&outFormat=json&location=' + loc1 + '&thumbMaps=false';
     var request = new XMLHttpRequest();
     request.open("POST", requestURL);
@@ -35,7 +36,6 @@ function getLatLong() {
         secondLat = request2.responseText.substring(secondLat, secondLat + 9);
         secondLong = request2.responseText.indexOf('"lng"') + 6; //lastIndexOf gives same result? 
         secondLong = request2.responseText.substring(secondLong, secondLong + 9);
-        //getTimeTwo();
     }
 
     /* GETS CURRENT TIME for both cities */
@@ -65,10 +65,6 @@ function getLatLong() {
             currTime2 = requestTime2.responseText.substring(currTime2, currTime2 + 5);
 
             /* DISPLAY TIMES AND RESULTS */
-            //	while(done != true) {
-            //		void(0);
-            //		console.log("here");
-            //	}
             currTimeHour = window.currTime.substring(0, 2);
             currTime2Hour = window.currTime2.substring(0, 2);
             if (currTime2Hour < 8 && currTime2Hour >= 0) {
