@@ -1,9 +1,12 @@
+<!DOCTYPE html>
 <!-- Bita Golshani -->
 <!-- 27 August 2018 -->
 
-<!DOCTYPE html>
-<html>
+<!-- make hovering change its color (gimp); military/regular time conversion; indicate working-->
 
+
+
+<html>
 <head>
 	<meta charset="utf-8">
 	<title> City to City </title>
@@ -24,11 +27,13 @@
 
 	<!-- input form for 2 locations -->
 	<!-- onKeyDown functions w enter press-->
-	<form style="text-align:center;">
+	<div id="formContainer1"> 
+	<form>
 		<input type="text" name="firstloc" placeholder="Your [City,Country]"> &nbsp; &nbsp;
 		<input type="text" name="secondloc" placeholder="Their [City, Country]" onKeyDown="if(event.keyCode==13) getLatLong();">
 		<img id="submitbutton" src="submitform.png" onclick="getLatLong()">
 	</form>
+	</div>
 
 	<p id="results"> <br/> <br/> </p> 
 	<img src="pixelmap.png" id="pixelmap" style="width:840px; height:420px; text-align:center">

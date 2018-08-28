@@ -17,11 +17,20 @@ h3 {
 
 body {
 	background-color: rgb(50, 50, 50);
+	text-align: center; /* to align forms (children of body) */ 
+	overflow: hidden; 
 }
 
 form { 
+	display: grid; 
+	grid-template-columns: repeat(4, auto);
+	align-items: center; 
+}
+
+#formContainer1 { 
+	margin-top: 5px;
 	text-align: center; 
-	margin-top:"5%";
+	display: inline-block;  
 }
 
 #submitbutton {
