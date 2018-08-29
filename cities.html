@@ -29,8 +29,8 @@
 	<!-- onKeyDown functions w enter press-->
 	<div id="formContainer1"> 
 	<form>
-		<input type="text" name="firstloc" placeholder="Your [City,Country]"> &nbsp; &nbsp;
-		<input type="text" name="secondloc" placeholder="Their [City, Country]" onKeyDown="if(event.keyCode==13) getLatLong();">
+		<input type="text" id="firstloc" placeholder="Your [City,Country]"> &nbsp; &nbsp;
+		<input type="text" id="secondloc" placeholder="Their [City, Country]" onKeyDown="if(event.keyCode==13) getLatLong();">
 		<img id="submitbutton" src="submit.png" onclick="getLatLong()" onmouseover="this.src='submithover.png'" onmouseout="this.src='submit.png'" > 
 	</form>
 	</div>
