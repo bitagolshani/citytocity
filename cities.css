@@ -35,6 +35,9 @@ form {
 
 #submitbutton {
 	cursor: pointer;
+	width: 100px; 
+	height: 45px; 
+	padding-left: 15px;
 }
 
 /* removes chrome yellow auto-fill bg color on input forms */
