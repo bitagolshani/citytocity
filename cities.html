@@ -7,6 +7,7 @@
 
 
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<title> City to City </title>
@@ -22,20 +23,28 @@
 <body>
 	<header>
 		<h1> CITY TO CITY </h1>
-		<h3> A helpful guide to communicating with far-away loved ones </h3>
+		<h3> A helpful guide to communicating with far-away friends </h3>
 	</header>
+
+	<!-- time conversion (military/standard time)-->
+	<select id="timeFormat" onchange="console.log(value)" onmouseover="style='background-color:white;'" onmouseout="style='background-color: grey;'">
+		<option value="12">12HR Time</option>
+		<option value="24" selected>24HR Time</option>
+	</select>
 
 	<!-- input form for 2 locations -->
 	<!-- onKeyDown functions w enter press-->
-	<div id="formContainer1"> 
-	<form>
-		<input type="text" id="firstloc" placeholder="Your [City,Country]"> &nbsp; &nbsp;
-		<input type="text" id="secondloc" placeholder="Their [City, Country]" onKeyDown="if(event.keyCode==13) getLatLong();">
-		<img id="submitbutton" src="submit.png" onclick="getLatLong()" onmouseover="this.src='submithover.png'" onmouseout="this.src='submit.png'" > 
-	</form>
+	<div id="formContainer1">
+		<form>
+			<input type="text" id="firstloc" placeholder="Your [City,Country]"> &nbsp; &nbsp;
+			<input type="text" id="secondloc" placeholder="Their [City, Country]" onKeyDown="if(event.keyCode==13) getLatLong();">
+			<img id="submitbutton" src="submit.png" onclick="getLatLong()" onmouseover="this.src='submithover.png'" onmouseout="this.src='submit.png'">
+		</form>
 	</div>
 
-	<p id="results"> <br/> <br/> </p> 
+	<p id="results">
+		<br/>
+		<br/> </p>
 	<img src="pixelmap.png" id="pixelmap" style="width:840px; height:420px; text-align:center">
 	<!-- external javascript file-->
 	<script src="cities.js"></script>

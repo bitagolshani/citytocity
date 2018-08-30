@@ -21,6 +21,15 @@ body {
 	overflow: hidden; 
 }
 
+#timeFormat { 
+	position: absolute; 
+	top: 15px; 
+	right: 70px; 
+	padding: 3px; 
+	border-color: transparent;
+	background-color: rgb(138, 134, 134);  
+}
+
 form { 
 	display: grid; 
 	grid-template-columns: repeat(4, auto);
