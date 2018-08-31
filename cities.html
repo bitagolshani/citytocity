@@ -2,10 +2,6 @@
 <!-- Bita Golshani -->
 <!-- 27 August 2018 -->
 
-<!-- make hovering change its color (gimp); military/regular time conversion; indicate working-->
-
-
-
 <html>
 
 <head>
@@ -27,7 +23,7 @@
 	</header>
 
 	<!-- time conversion (military/standard time)-->
-	<select id="timeFormat" onchange="printMsg(value)"; onmouseover="style='background-color:white;'" onmouseout="style='background-color: grey;'">
+	<select id="timeFormat" onchange="printMsg(value)" ; onmouseover="style='background-color:white;'" onmouseout="style='background-color: grey;'">
 		<option value="0">12HR TIME</option>
 		<option value="1" selected>24HR TIME</option>
 	</select>
@@ -50,14 +46,11 @@
 	<script src="cities.js"></script>
 </body>
 
+</html>
 
 
 <!-- MISCELLANEOUS IDEAS -->
-
 <!-- TODO: add gradient bar showing when it's closer to a better time to communicate-->
 <!-- TODO: add table showing your/their time (2 rows) and filling in boxes green/red accordingly-->
-<!-- TODO: military time/regular time conversion -->
 <!-- TODO: make map interactive? probably need a new API w that functionality-->
 <!-- TODO: allow user to set own time boundaries (e.g. 9am-11pm) -->
-
-</html>

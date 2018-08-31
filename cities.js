@@ -4,7 +4,6 @@
 /* called upon button click */
 function getLatLong() {
     var loc1 = document.getElementById("firstloc").value;
-    // console.log(loc1);
     var loc2 = document.getElementById("secondloc").value;
 
     /*FIRST CITY lat&lng*/
@@ -37,8 +36,6 @@ function getLatLong() {
         secondLat = request2.responseText.substring(secondLat, secondLat + 9);
         secondLong = request2.responseText.indexOf('"lng"') + 6; //lastIndexOf gives same result? 
         secondLong = request2.responseText.substring(secondLong, secondLong + 9);
-        //  console.log(secondLat);
-        //  console.log(secondLong);
     }
 
     /* GETS CURRENT TIME for both cities */
