@@ -25,9 +25,14 @@ body {
 	position: absolute; 
 	top: 15px; 
 	right: 70px; 
-	padding: 3px; 
+	padding: 8px 15px;
+
 	border-color: transparent;
 	background-color: rgb(138, 134, 134);  
+	border: 3px solid #ccc;
+	font-family: georgia; 
+	-webkit-transition: 0.5s;
+	transition: 0.5s;
 }
 
 form { 
