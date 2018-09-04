@@ -48,7 +48,6 @@ function getLatLong() {
         requestTime.onload = function () {
             window.currTime = requestTime.responseText.indexOf("formatted") + 23; //hr:min  /* GLOBAL VARIABLE*/ 
             currTime = requestTime.responseText.substring(currTime, currTime + 5);
-            //done = true;
             getTimeTwo(); /* FIX FOR ISSUE 08/17: getTimeTwo() only starts AFTER getTimeOne() is completed; doesn't start time calculation 
 								 without first getting first city's info*/
         }
